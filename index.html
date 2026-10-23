@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LastCut × Sramana Giri</title>
+<meta name="description" content="Let's make LastCut impossible to ignore: a one-month marketing proposal by Sramana Giri.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an ivory editorial page. A sunlit wardrobe-room hero with the LastCut studio card rising out of it,
+   then calm alternating rows of copy and product-style cards. Photos are pure imagery: no text sits on them. */
+:root{
+  --page:#FBFAF7;
+  --card:#FFFFFF;
+  --soft:#F3F0EA;
+  --sand:#E8E0D3;
+  --ink:#121110;
+  --ink-2:#5F5A53;
+  --ink-3:#9C958B;
+  --line:#E6E1D8;
+  --clay:#A8573A;
+  --clay-soft:#F4E7E0;
+  --good:#2E7D4F;
+  --good-soft:#E5F2EA;
+
+  --serif:"Instrument Serif", "Iowan Old Style", "Times New Roman", serif;
+  --sans:"Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mono:"Geist Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  --r:16px;
+  --shadow:0 1px 2px rgba(18,17,16,.04), 0 16px 40px rgba(60,45,30,.08);
+  --shadow-lg:0 2px 6px rgba(18,17,16,.05), 0 40px 90px rgba(60,45,30,.18);
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--page); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,ul,ol,figure{margin:0}
+ul,ol{padding:0; list-style:none}
+a{color:inherit; text-decoration:none}
+img{display:block; max-width:100%}
+button{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--ink); outline-offset:3px; border-radius:6px}
+
+.page{overflow:hidden}
+.wrap{max-width:1140px; margin:0 auto; padding-left:max(20px, env(safe-area-inset-left, 0px)); padding-right:max(20px, env(safe-area-inset-right, 0px))}
+
+/* ---------- atoms ---------- */
+.btn{display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:999px; background:var(--ink); color:#fff; font-size:14.5px; font-weight:500; white-space:nowrap; box-shadow:0 10px 24px rgba(18,17,16,.18); transition:transform .3s var(--ease), box-shadow .3s}
+.btn:hover{transform:translateY(-2px); box-shadow:0 16px 30px rgba(18,17,16,.22)}
+.btn.ghost{background:rgba(255,255,255,.7); color:var(--ink); box-shadow:inset 0 0 0 1px var(--line); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px)}
+.btn .ar{transition:transform .3s var(--ease)}
+.btn:hover .ar{transform:translateX(3px)}
+.chip{display:inline-flex; align-items:center; gap:10px; padding:7px 14px 7px 8px; border-radius:999px; background:rgba(255,255,255,.78); border:1px solid rgba(255,255,255,.95); font-size:12.5px; font-weight:500; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); box-shadow:0 6px 18px rgba(60,45,30,.08)}
+.chip .s{flex:none; white-space:nowrap; height:22px; padding:0 9px; border-radius:999px; background:var(--ink); color:#fff; display:grid; place-items:center; font-family:var(--mono); font-size:10px; letter-spacing:.1em}
+.kicker{font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.h1{font-family:var(--serif); font-weight:400; font-size:clamp(52px,7.6vw,108px); line-height:.95; letter-spacing:-.025em; text-wrap:balance}
+.h1 em, .h2 em{font-style:italic; color:var(--clay)}
+.h2{font-family:var(--serif); font-weight:400; font-size:clamp(38px,4.4vw,60px); line-height:1.02; letter-spacing:-.018em; text-wrap:balance}
+.h3{font-family:var(--serif); font-weight:400; font-size:clamp(26px,2.4vw,32px); line-height:1.1}
+.muted{color:var(--ink-2)}
+.lede{font-size:clamp(16px,1.3vw,18.5px); color:var(--ink-2); max-width:54ch; text-wrap:pretty}
+.card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow)}
+.ph{position:relative; overflow:hidden; border-radius:var(--r); background:var(--sand)}
+.ph img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 1.4s var(--ease)}
+.ph:hover img{transform:scale(1.035)}
+.tiny{font-size:11.5px; color:var(--ink-3)}
+.ln{height:6px; border-radius:3px; background:var(--line)}
+.idx{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; color:var(--clay)}
+
+/* platform label: the first line of every idea section */
+.platform{display:flex; align-items:center; flex-wrap:wrap; gap:6px 10px; font-size:15px; line-height:1.3}
+.platform b{font-weight:600}
+.platform .sub{color:var(--ink-2)}
+.platform .sub::before{content:"·"; margin-right:10px; color:var(--ink-3)}
+.pf{width:24px; height:24px; border-radius:7px; flex:none; display:grid; place-items:center; color:#fff; font-size:11.5px; font-weight:700; letter-spacing:-.02em; position:relative}
+.pf + .pf{margin-left:-4px}
+.pf.yt{background:#FF0033}
+.pf.yt::after{content:""; margin-left:2px; border-left:8px solid #fff; border-top:5px solid transparent; border-bottom:5px solid transparent}
+.pf.li{background:#0A66C2}
+.pf.ig{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.pf.ig::after{content:""; width:11px; height:11px; border:2px solid #fff; border-radius:4px}
+.pf.br{background:var(--clay)}
+.pf.br::after{content:""; width:9px; height:9px; border-radius:50%; background:#fff}
+.pf.sys{background:var(--ink)}
+.pf.sys::after{content:""; width:10px; height:10px; border:2px solid #fff; border-radius:2px; transform:rotate(45deg)}
+.pf.cm{background:#6F7F5E}
+.pf.cm::after{content:""; width:9px; height:7px; border:1.6px solid #fff; border-radius:3px 3px 3px 0}
+.pf.nl{background:#8C6A4F}
+.pf.nl::after{content:""; width:10px; height:7px; border:1.6px solid #fff; border-radius:1px}
+.pf.web{background:#3D5A73}
+.pf.web::after{content:""; width:10px; height:10px; border:1.6px solid #fff; border-radius:50%}
+
+/* play glyph: drawn, never text */
+.play{position:absolute; z-index:2; width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,.88); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); display:grid; place-items:center; box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.play::after{content:""; margin-left:3px; border-left:12px solid var(--ink); border-top:8px solid transparent; border-bottom:8px solid transparent}
+.play.sm{width:26px; height:26px}
+.play.sm::after{border-left-width:7px; border-top-width:5px; border-bottom-width:5px; margin-left:2px}
+.scrub{position:absolute; z-index:2; left:12px; right:12px; bottom:12px; height:3px; border-radius:2px; background:rgba(255,255,255,.35); overflow:hidden}
+.scrub::after{content:""; position:absolute; inset:0; width:100%; background:#fff; transform-origin:left; animation:scrub 7s linear infinite}
+@keyframes scrub{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+/* the "video": a still photo given slow camera motion */
+.motion img{animation:kb 7s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.02) translate(0,0)}to{transform:scale(1.14) translate(-2%,-3%)}}
+
+/* ---------- hero ---------- */
+.hero{position:relative; isolation:isolate; min-height:clamp(780px,100vh,1000px); display:flex; flex-direction:column; overflow:hidden}
+.hero{background:var(--page)}
+.hero-bg{position:absolute; left:0; right:0; bottom:0; top:clamp(330px,44%,460px); z-index:-2; background:url("img/hero.jpg") 50% 58% / cover no-repeat;
+  -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 36%, #000 84%, transparent 100%); mask-image:linear-gradient(180deg, transparent 0%, #000 36%, #000 84%, transparent 100%)}
+
+.nav{position:relative; z-index:5; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px; padding:18px clamp(16px,2.6vw,32px)}
+.logo{display:flex; align-items:center; gap:10px; font-weight:600; font-size:15px; letter-spacing:-.01em}
+.logo i{width:32px; height:32px; border-radius:50%; background:var(--ink); color:#fff; display:grid; place-items:center; font-style:normal; font-family:var(--serif); font-size:18px}
+.menu{display:flex; gap:2px; padding:4px; border-radius:999px; background:rgba(255,255,255,.82); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 6px 20px rgba(60,45,30,.1)}
+.menu a{padding:7px 15px; border-radius:999px; font-size:13px; font-weight:500; color:var(--ink-2); transition:background .2s, color .2s}
+.menu a:hover{color:var(--ink); background:var(--soft)}
+.menu a.on{background:var(--ink); color:#fff}
+.nav .btn{justify-self:end; padding:10px 18px; font-size:13.5px}
+@media (max-width:900px){ .menu{display:none} .nav{grid-template-columns:1fr auto} }
+@media (max-width:420px){ .nav .btn{padding:9px 14px; font-size:12.5px} .logo span{display:none} }
+
+.hero-copy{position:relative; z-index:3; display:flex; flex-direction:column; align-items:center; text-align:center; gap:24px; padding:clamp(28px,6vh,64px) 20px 0}
+.hero-copy .h1{max-width:13.5ch}
+.hero-copy .lede{max-width:52ch; color:#47423C}
+.hero-cta{display:flex; flex-wrap:wrap; justify-content:center; gap:10px}
+
+/* the LastCut studio card */
+.app{
+  position:relative; z-index:1; width:min(1000px, calc(100% - 40px)); margin:clamp(44px,7vh,76px) auto 0;
+  background:#fff; border-radius:18px 18px 0 0; box-shadow:var(--shadow-lg); border:1px solid rgba(255,255,255,.9); border-bottom:0;
+  display:grid; grid-template-columns:168px minmax(0,1fr) 250px; height:clamp(400px,48vh,490px); overflow:hidden; font-size:12px;
+}
+.app-side{border-right:1px solid var(--line); padding:12px 10px; display:flex; flex-direction:column; gap:10px; background:#FCFBF8}
+.app-brand{display:flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px; padding:2px 4px 10px; border-bottom:1px solid var(--line)}
+.app-brand i{width:22px; height:22px; border-radius:50%; background:var(--ink); color:#fff; display:grid; place-items:center; font-style:normal; font-family:var(--serif); font-size:13px}
+.navlist{display:flex; flex-direction:column; gap:2px}
+.navlist li{display:flex; align-items:center; gap:8px; padding:6px; border-radius:7px; color:var(--ink-2)}
+.navlist li::before{content:""; width:12px; height:12px; border-radius:3px; border:1.5px solid #CFC7BA}
+.navlist li.on{background:#fff; color:var(--ink); font-weight:500; box-shadow:0 0 0 1px var(--line)}
+.navlist li.on::before{border-color:var(--ink); background:var(--ink)}
+.app-main{display:flex; flex-direction:column; min-width:0}
+.app-top{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid var(--line)}
+.app-top b{font-weight:600; font-size:12.5px}
+.app-top .go{background:var(--ink); color:#fff; border-radius:999px; padding:5px 12px; font-size:11px; font-weight:500}
+.canvas{flex:1; background:var(--soft); padding:16px; display:grid; grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr); gap:10px; align-items:center; min-height:0}
+.frame{display:flex; flex-direction:column; gap:7px; height:100%; min-height:0}
+.frame .ph{flex:1; border-radius:10px; min-height:0; background:#fff; box-shadow:0 0 0 1px var(--line)}
+.frame .ph img{object-position:50% 30%}
+.frame .cap{display:flex; justify-content:space-between; font-size:11px; color:var(--ink-2)}
+.frame .cap b{font-weight:600; color:var(--ink)}
+.frame .play{left:50%; top:50%; transform:translate(-50%,-50%)}
+.arrow{width:34px; height:34px; border-radius:50%; background:var(--ink); display:grid; place-items:center; box-shadow:0 0 0 6px var(--soft), var(--shadow)}
+.arrow::after{content:""; width:8px; height:8px; border-top:2px solid #fff; border-right:2px solid #fff; transform:translateX(-2px) rotate(45deg)}
+.app-tpl{border-left:1px solid var(--line); padding:12px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.app-tpl .hd{display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:12.5px}
+.tpls{display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.tpls .ph{aspect-ratio:4/5; border-radius:8px}
+.tpls .ph.on{box-shadow:0 0 0 2px var(--ink)}
+.tpls .ph.on::after{content:""; position:absolute; right:6px; top:6px; width:16px; height:16px; border-radius:50%; background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.3l2.2 2.1 4.3-4.6' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.render{margin-top:auto; display:flex; flex-direction:column; gap:6px; padding-top:10px; border-top:1px solid var(--line)}
+.render .row2{display:flex; justify-content:space-between; font-size:11.5px}
+.bar{height:5px; border-radius:3px; background:var(--soft); overflow:hidden}
+.bar i{display:block; height:100%; width:100%; background:var(--ink); border-radius:3px; transform-origin:left; animation:fill 3.2s var(--ease) .9s both}
+@keyframes fill{from{transform:scaleX(.08)}to{transform:scaleX(1)}}
+@media (max-width:900px){ .app{grid-template-columns:minmax(0,1fr)} .app-side, .app-tpl{display:none} }
+@media (max-width:520px){ .hero-bg{top:clamp(480px,58%,560px)} .chip{font-size:11.5px} .app{height:380px} .canvas{padding:12px; gap:6px; grid-template-columns:minmax(0,1fr) 26px minmax(0,1fr)} .arrow{width:26px; height:26px} }
+
+/* ---------- levers strip ---------- */
+.levers{display:flex; flex-wrap:wrap; justify-content:center; gap:14px 40px; padding:44px 0; border-bottom:1px solid var(--line); color:var(--ink-3); font-size:15px; font-weight:500}
+.levers span{display:flex; align-items:center; gap:10px}
+.levers span::before{content:""; width:6px; height:6px; border-radius:50%; background:#CFC7BA}
+
+/* ---------- sections ---------- */
+.section{padding-block:clamp(80px,11vw,140px)}
+.section + .section{padding-top:0}
+.center-head{display:flex; flex-direction:column; align-items:center; text-align:center; gap:18px; margin-bottom:clamp(40px,5vw,64px)}
+.center-head .h2{max-width:20ch}
+.center-head .lede{max-width:60ch}
+.row{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(40px,7vw,100px); align-items:center}
+.row.flip > :first-child{order:2}
+.row .copy{display:flex; flex-direction:column; gap:18px; min-width:0}
+.row .copy .h2{max-width:15ch}
+@media (max-width:900px){ .row{grid-template-columns:1fr} .row.flip > :first-child{order:0} }
+
+.points{display:flex; flex-direction:column; gap:12px; margin-top:6px}
+.points li{display:flex; gap:12px; color:var(--ink-2); font-size:15.5px}
+.points li::before{content:""; flex:none; width:18px; height:18px; margin-top:3px; border-radius:50%; background:var(--soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5.5 9.3l2.3 2.2 4.7-5' fill='none' stroke='%23121110' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat; border:1px solid var(--line)}
+.points li b{color:var(--ink); font-weight:500}
+.result{border-top:1px solid var(--line); padding-top:16px; margin-top:6px; display:flex; flex-direction:column; gap:4px}
+.result p{font-family:var(--serif); font-size:clamp(20px,1.7vw,24px); line-height:1.25}
+
+.wide-photo{aspect-ratio:21/9}
+@media (max-width:700px){ .wide-photo{aspect-ratio:4/3} }
+
+/* audience card */
+.aud{padding:22px 24px 24px}
+.aud-hd{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:18px}
+.aud-hd b{display:block; font-family:var(--serif); font-weight:400; font-size:28px; line-height:1.1}
+.aud-hd .sel{font-size:12px; color:var(--ink-2); border:1px solid var(--line); border-radius:999px; padding:5px 12px; white-space:nowrap}
+.venn{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.venn div{background:var(--soft); border-radius:12px; padding:18px 16px 42px; font-family:var(--serif); font-size:21px; line-height:1.15}
+.venn div small{display:block; font-family:var(--sans); font-size:12.5px; color:var(--ink-2); margin-top:6px; line-height:1.4}
+.venn div:nth-child(2), .venn div:nth-child(4){text-align:right}
+.venn div:nth-child(3), .venn div:nth-child(4){padding:42px 16px 18px}
+.venn .core{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:96px; height:96px; border-radius:50%; background:var(--ink); color:#fff; display:grid; place-items:center; font-family:var(--serif); font-style:italic; font-size:21px; box-shadow:0 0 0 8px #fff, var(--shadow-lg)}
+
+/* brand system card */
+.brand-card{padding:14px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:14px}
+.brand-card .ph{min-height:420px; border-radius:12px}
+.bs{display:flex; flex-direction:column; gap:10px}
+.bs > div{background:var(--soft); border-radius:12px; padding:14px}
+.bs small{display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px}
+.sw{display:flex; gap:6px}
+.sw i{flex:1; height:34px; border-radius:7px; box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+.type-a{font-family:var(--serif); font-size:34px; line-height:1}
+.type-a em{color:var(--clay)}
+.story{display:flex; align-items:center; gap:8px; font-size:12.5px; font-weight:500}
+.story span{padding:6px 10px; border-radius:999px; background:#fff; box-shadow:0 0 0 1px var(--line); white-space:nowrap}
+.story span.k{background:var(--ink); color:#fff; box-shadow:none}
+.story i{flex:1; height:1.5px; min-width:8px; background:repeating-linear-gradient(90deg,#CFC7BA 0 4px,transparent 4px 8px)}
+.voice{display:flex; flex-wrap:wrap; gap:6px}
+.voice span{font-size:12px; padding:4px 10px; border-radius:999px; background:#fff; box-shadow:0 0 0 1px var(--line); color:var(--ink-2)}
+@media (max-width:560px){ .brand-card{grid-template-columns:1fr} .brand-card .ph{min-height:0; aspect-ratio:4/3} }
+
+/* part divider */
+.part{display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px; padding-block:clamp(64px,8vw,100px); border-top:1px solid var(--line)}
+.part .h1{font-size:clamp(48px,6.4vw,88px); max-width:14ch}
+.part-photo{height:clamp(320px,44vw,600px); margin-bottom:clamp(64px,8vw,110px)}
+
+/* playlist card */
+.playlist{padding:14px; display:flex; flex-direction:column; gap:12px}
+.player{aspect-ratio:16/9}
+.player .play{left:50%; top:50%; transform:translate(-50%,-50%); width:58px; height:58px}
+.pl-hd{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+.pl-hd b{font-weight:600; font-size:14px}
+.eps li{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; align-items:center; padding:9px 4px; border-top:1px solid var(--line); font-size:13.5px}
+.eps li span:first-child::before{content:""; display:inline-block; width:6px; height:6px; border-radius:50%; background:#CFC7BA; margin-right:10px; vertical-align:middle}
+.eps li.on span:first-child::before{background:var(--clay)}
+.eps li .d{font-size:11.5px; color:var(--ink-3); white-space:nowrap}
+.eps li.on{font-weight:500}
+.formats{display:flex; gap:8px; flex-wrap:wrap}
+.formats span{font-size:12px; padding:5px 11px; border-radius:999px; background:var(--soft); border:1px solid var(--line); color:var(--ink-2)}
+
+/* instagram profile card: imagery only in the grid */
+.stack{display:flex; flex-direction:column; gap:14px}
+.ig-card{padding:16px}
+.ig-hd{display:flex; align-items:center; gap:12px; margin-bottom:12px}
+.ig-hd .ring{width:46px; height:46px; border-radius:50%; padding:2px; background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF); flex:none}
+.ig-hd .ring i{display:grid; place-items:center; width:100%; height:100%; border-radius:50%; background:var(--ink); color:#fff; border:2px solid #fff; font-style:normal; font-family:var(--serif); font-size:19px}
+.ig-hd b{display:block; font-size:13.5px; font-weight:600; line-height:1.2}
+.ig-hd em{margin-left:auto; font-style:normal; font-size:11px; padding:3px 9px; border-radius:999px; background:var(--good-soft); color:var(--good); font-weight:500}
+.hl{display:flex; gap:12px; margin:0 0 14px 2px}
+.hl .ph{width:44px; height:44px; border-radius:50%; flex:none; box-shadow:0 0 0 2px #fff, 0 0 0 3px var(--line)}
+.grid9{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:3px; border-radius:10px; overflow:hidden}
+.grid9 .ph{aspect-ratio:4/5; border-radius:0}
+.grid9 .reel::after{content:""; position:absolute; right:8px; top:8px; width:0; height:0; border-left:9px solid #fff; border-top:6px solid transparent; border-bottom:6px solid transparent; filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
+.fmt{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px}
+.fmt li{padding:12px; border-radius:12px; background:var(--card); border:1px solid var(--line); display:flex; flex-direction:column; gap:4px}
+.fmt small{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; color:var(--clay)}
+.fmt b{font-family:var(--serif); font-weight:400; font-size:17px; line-height:1.15}
+@media (max-width:480px){ .fmt{grid-template-columns:1fr 1fr} }
+
+/* linkedin system card */
+.cal{padding:16px}
+.cal-hd{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-weight:600; font-size:13.5px}
+.cal-hd span{font-weight:500; font-size:11.5px; color:var(--good); background:var(--good-soft); padding:3px 9px; border-radius:999px}
+.days{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px}
+.days div{background:var(--soft); border-radius:10px; padding:10px 8px; display:flex; flex-direction:column; gap:8px; min-width:0}
+.days small{font-family:var(--mono); font-size:9.5px; color:var(--ink-3); letter-spacing:.06em; text-transform:uppercase}
+.days b{font-size:12px; font-weight:500; line-height:1.25}
+@media (max-width:560px){ .days{grid-template-columns:1fr 1fr} }
+.av{width:22px; height:22px; border-radius:50%; display:grid; place-items:center; color:#fff; font-size:9.5px; font-weight:600; flex:none}
+.draft{padding:14px 16px; display:flex; flex-direction:column; gap:10px}
+.draft .who{display:flex; align-items:center; gap:10px}
+.draft .who .av{width:30px; height:30px; font-size:11px}
+.draft .who b{display:block; font-size:13px; font-weight:600; line-height:1.2}
+.draft .who em{margin-left:auto; font-style:normal; font-size:11px; padding:3px 9px; border-radius:999px; background:var(--soft); color:var(--ink-2)}
+.draft p{font-size:14px; line-height:1.45}
+.draft.shift{margin-left:clamp(0px,5vw,48px)}
+
+/* photo-to-video demo card */
+.demo{padding:14px; display:flex; flex-direction:column; gap:12px}
+.pair{display:grid; grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr); gap:8px; align-items:center}
+.pair .ph{aspect-ratio:4/5.4; border-radius:12px; background:#fff; box-shadow:0 0 0 1px var(--line)}
+.pair .ph img{object-position:50% 25%}
+.pair .play{left:50%; top:50%; transform:translate(-50%,-50%)}
+.pair .arrow{width:40px; height:40px; justify-self:center; box-shadow:var(--shadow)}
+.labels{display:grid; grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr); gap:8px; font-size:12.5px; color:var(--ink-2)}
+.labels b{display:block; color:var(--ink); font-weight:600; font-size:13px}
+.labels span:last-child{grid-column:3}
+.strip{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px}
+.strip .ph{aspect-ratio:1; border-radius:8px}
+.strip .ph .play{left:50%; top:50%; transform:translate(-50%,-50%)}
+
+/* feature: photo + soft panel */
+.feature{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:20px; align-items:stretch}
+.feature.flip > :first-child{order:2}
+.feature .ph{min-height:clamp(400px,42vw,580px)}
+.feature .panel{background:var(--soft); border-radius:var(--r); padding:clamp(24px,3.4vw,46px); display:flex; flex-direction:column; gap:18px; justify-content:center}
+.steps{counter-reset:s; display:flex; flex-direction:column; gap:10px}
+.steps li{counter-increment:s; display:grid; grid-template-columns:28px 1fr; gap:10px; font-size:15px; color:var(--ink-2)}
+.steps li::before{content:counter(s, decimal-leading-zero); font-family:var(--mono); font-size:11.5px; color:var(--clay); padding-top:3px}
+.metrics{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+.metrics span{font-size:12.5px; padding:6px 12px; border-radius:999px; border:1px solid var(--line); background:#fff; color:var(--ink-2)}
+@media (max-width:900px){ .feature{grid-template-columns:1fr} .feature.flip > :first-child{order:0} .feature .ph{min-height:0; aspect-ratio:4/3} }
+
+/* creators */
+.collab{padding:14px; display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1fr); gap:14px}
+.collab > .ph{min-height:400px; border-radius:12px}
+.collab ul{display:flex; flex-direction:column; gap:10px; justify-content:center}
+.collab li{display:grid; grid-template-columns:34px minmax(0,1fr); gap:12px; align-items:center; padding:12px; border-radius:12px; background:var(--soft)}
+.collab li .av{width:34px; height:34px; font-family:var(--serif); font-size:16px; font-weight:400}
+.collab li b{display:block; font-family:var(--serif); font-weight:400; font-size:18px; line-height:1.2}
+.collab li small{font-size:12px; color:var(--ink-3)}
+@media (max-width:560px){ .collab{grid-template-columns:1fr} .collab > .ph{min-height:0; aspect-ratio:4/3} }
+
+/* fashion lab */
+.lab{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px}
+.lab article{display:flex; flex-direction:column; gap:12px; min-width:0}
+.lab .ph{aspect-ratio:3/4}
+.lab .wk{display:flex; justify-content:space-between; align-items:baseline; gap:8px}
+.lab .wk b{font-family:var(--serif); font-weight:400; font-size:24px; line-height:1.1}
+.lab p{font-size:14px; color:var(--ink-2)}
+@media (max-width:900px){ .lab{grid-template-columns:1fr 1fr} }
+.clinic{margin-top:28px; display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:14px 28px; padding:22px 26px; border-radius:var(--r); background:var(--ink); color:#fff}
+.clinic .kicker{color:rgba(255,255,255,.5)}
+.clinic p{font-family:var(--serif); font-size:clamp(20px,1.9vw,26px); line-height:1.2}
+.clinic small{font-size:13.5px; color:rgba(255,255,255,.62); max-width:36ch; display:block}
+@media (max-width:800px){ .clinic{grid-template-columns:1fr} }
+
+/* search card */
+.serp{padding:16px; display:flex; flex-direction:column; gap:10px}
+.q-bar{display:flex; align-items:center; gap:10px; padding:11px 14px; border-radius:999px; background:var(--soft); border:1px solid var(--line); font-size:13.5px}
+.q-bar::before{content:""; width:12px; height:12px; border:1.8px solid var(--ink-2); border-radius:50%; flex:none; box-shadow:5px 5px 0 -4px var(--ink-2)}
+.q-bar .cur{width:1.5px; height:15px; background:var(--ink); animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.sugg li{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:center; padding:11px 4px; border-top:1px solid var(--line)}
+.sugg li b{display:block; font-size:13.5px; font-weight:500; line-height:1.35}
+.sugg li small{font-size:12px; color:var(--ink-3)}
+.st{font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; white-space:nowrap}
+.st.vid{background:#FDE8EC; color:#C4002A}
+.st.web{background:#E6EEF5; color:#3D5A73}
+.st.guide{background:var(--clay-soft); color:var(--clay)}
+
+/* repurposing flow */
+.flow{padding:18px}
+.flow-src{display:flex; align-items:center; gap:12px; padding:10px; border-radius:12px; background:var(--ink); color:#fff}
+.flow-src .ph{width:64px; height:44px; border-radius:8px; flex:none}
+.flow-src b{font-weight:500; font-size:14px; display:block; line-height:1.3}
+.flow-src small{display:block; font-size:11.5px; color:rgba(255,255,255,.55)}
+.branches{position:relative; margin:10px 0 0 30px; padding-left:22px; border-left:1.5px dashed #CFC7BA; display:flex; flex-direction:column; gap:8px}
+.branches li{position:relative; display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px; background:var(--soft); font-size:13.5px}
+.branches li::before{content:""; position:absolute; left:-23px; top:50%; width:20px; border-top:1.5px dashed #CFC7BA}
+.branches .pf{width:20px; height:20px; font-size:10px}
+.branches .pf.ig::after{width:9px; height:9px}
+
+/* measurement card */
+.meas{padding:18px 20px}
+.meas-hd{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px}
+.meas-hd b{font-family:var(--serif); font-weight:400; font-size:24px}
+.meas-hd span{font-size:11.5px; padding:3px 9px; border-radius:999px; background:var(--soft); color:var(--ink-2)}
+.funnel li{display:grid; grid-template-columns:96px minmax(0,1fr); gap:14px; align-items:center; padding:12px 0; border-top:1px solid var(--line)}
+.funnel li:first-child{border-top:0}
+.funnel small{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
+.funnel .fb{display:flex; flex-direction:column; gap:6px; min-width:0}
+.funnel .fb b{font-size:13px; font-weight:500; line-height:1.3}
+.funnel .track{height:6px; border-radius:3px; background:var(--soft); overflow:hidden}
+.funnel .track i{display:block; height:100%; border-radius:3px; background:var(--ink)}
+.funnel li.goal .track i{background:var(--clay)}
+.funnel li.goal small{color:var(--clay)}
+
+/* four weeks */
+.weeks{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px}
+.weeks li{padding:24px 22px 26px; display:flex; flex-direction:column; gap:12px}
+.weeks .n{font-family:var(--mono); font-size:11px; color:var(--clay); letter-spacing:.12em}
+.weeks .track{height:4px; border-radius:2px; background:var(--soft); overflow:hidden}
+.weeks .track i{display:block; height:100%; background:var(--ink); border-radius:2px}
+.weeks p{font-size:14.5px; color:var(--ink-2)}
+@media (max-width:980px){ .weeks{grid-template-columns:1fr 1fr} }
+@media (max-width:560px){ .weeks{grid-template-columns:1fr} }
+.next{margin-top:14px; display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; padding:18px 22px; border-radius:var(--r); background:var(--soft); font-size:14.5px; color:var(--ink-2)}
+.next b{color:var(--ink); font-weight:500}
+
+/* the offer */
+.offer{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(40px,7vw,100px); align-items:center}
+.offer .ph{aspect-ratio:4/5}
+.offer .copy{display:flex; flex-direction:column; gap:18px}
+.skills{display:flex; flex-wrap:wrap; gap:8px}
+.skills span{font-size:13px; padding:6px 12px; border-radius:999px; background:#fff; border:1px solid var(--line); color:var(--ink-2)}
+.deliver{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px}
+.deliver li{padding:14px; border-radius:12px; background:var(--soft); font-family:var(--serif); font-size:19px; line-height:1.2}
+.deliver li small{display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px}
+@media (max-width:900px){ .offer{grid-template-columns:1fr} .offer .ph{aspect-ratio:4/3} }
+.quote{margin-top:clamp(56px,7vw,90px); text-align:center; font-family:var(--serif); font-size:clamp(28px,3.4vw,46px); line-height:1.12; max-width:24ch; margin-inline:auto; text-wrap:balance}
+.quote span{color:var(--ink-3)}
+
+/* closing: silk photo, quiet copy above it */
+.cta{position:relative; isolation:isolate; overflow:hidden; text-align:center; display:flex; flex-direction:column; align-items:center; gap:24px; padding:clamp(100px,13vw,170px) 20px clamp(220px,26vw,340px)}
+.cta::before{content:""; position:absolute; inset:0; z-index:-1; background:url("img/cta.jpg") 50% 70% / cover no-repeat}
+.cta::after{content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, var(--page) 0%, rgba(251,250,247,.78) 30%, rgba(251,250,247,.1) 70%)}
+.cta .h1{font-size:clamp(46px,6.4vw,92px); max-width:14ch}
+.sign{display:flex; align-items:center; gap:12px; padding:8px 8px 8px 10px; border-radius:999px; background:rgba(255,255,255,.82); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:var(--shadow)}
+.sign .av{width:38px; height:38px; background:var(--ink); font-family:var(--serif); font-size:17px; font-weight:400}
+.sign div{text-align:left; padding-right:8px}
+.sign b{display:block; font-size:14px; font-weight:600; line-height:1.2}
+.sign small{font-size:12.5px; color:var(--ink-2)}
+@media (max-width:560px){ .sign{flex-direction:column; text-align:center; border-radius:20px; padding:14px} .sign div{text-align:center; padding:0} }
+
+footer{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:26px clamp(20px,3vw,32px); font-size:13px; color:var(--ink-3); border-top:1px solid var(--line)}
+footer a{text-decoration:underline; text-underline-offset:2px}
+
+/* ---------- motion ---------- */
+@keyframes up{from{opacity:0; transform:translateY(18px)}to{opacity:1; transform:none}}
+.hero-copy > *{animation:up .9s var(--ease) both}
+.hero-copy > :nth-child(2){animation-delay:.08s}
+.hero-copy > :nth-child(3){animation-delay:.16s}
+.hero-copy > :nth-child(4){animation-delay:.24s}
+.app{animation:up 1.1s .3s var(--ease) both}
+@supports (animation-timeline: view()){
+  .rv{animation:rv linear both; animation-timeline:view(); animation-range:entry 0% entry 35%}
+  @keyframes rv{from{opacity:.25; transform:translateY(28px)}to{opacity:1; transform:none}}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{animation:none !important; transition:none !important}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero-bg" role="img" aria-label="A sunlit white wardrobe room with a long rail of jackets and shirts"></div>
+
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#top"><i>S</i><span>Sramana Giri</span></a>
+    <div class="menu">
+      <a class="on" href="#top">Overview</a>
+      <a href="#brand">Brand</a>
+      <a href="#channels">Channels</a>
+      <a href="#campaigns">Campaigns</a>
+      <a href="#growth">Growth</a>
+      <a href="#plan">Plan</a>
+    </div>
+    <a class="btn" href="https://sramanagiri99-creates.github.io/portfolio/" target="_blank" rel="noopener">View portfolio</a>
+  </nav>
+
+  <div class="hero-copy">
+    <span class="chip"><span class="s">LASTCUT × SG</span>A marketing proposal by Sramana Giri</span>
+    <h1 class="h1">Let&rsquo;s make LastCut <em>impossible</em> to ignore.</h1>
+    <p class="lede">LastCut is building a new way for fashion brands to create product videos. A great product still needs people to discover it, understand it, see what it can do, and have a reason to come back. That&rsquo;s the opportunity.</p>
+    <div class="hero-cta">
+      <a class="btn" href="#opportunity">See the ideas <span class="ar">&rarr;</span></a>
+      <a class="btn ghost" href="#offer">The offer</a>
+    </div>
+  </div>
+
+  <div class="app" aria-hidden="true">
+    <aside class="app-side">
+      <div class="app-brand"><i>L</i>LastCut</div>
+      <ul class="navlist">
+        <li class="on">New video</li>
+        <li>Catalogue</li>
+        <li>Templates</li>
+        <li>Brand kit</li>
+        <li>Exports</li>
+      </ul>
+    </aside>
+    <div class="app-main">
+      <div class="app-top"><span><b>Linen tie-waist dress</b> <span class="tiny">&middot; SS26 drop</span></span><span class="go">Generate</span></div>
+      <div class="canvas">
+        <div class="frame">
+          <div class="ph"><img src="img/linen.jpg" alt=""></div>
+          <div class="cap"><b>Product photo</b><span>Uploaded</span></div>
+        </div>
+        <span class="arrow"></span>
+        <div class="frame">
+          <div class="ph motion"><img src="img/linen.jpg" alt=""><span class="play"></span><span class="scrub"></span></div>
+          <div class="cap"><b>Product video</b><span>9:16 &middot; 0:08</span></div>
+        </div>
+      </div>
+    </div>
+    <aside class="app-tpl">
+      <div class="hd">Templates <span class="tiny">12</span></div>
+      <div class="tpls">
+        <div class="ph on"><img src="img/terra.jpg" alt=""></div>
+        <div class="ph"><img src="img/g-dress.jpg" alt=""></div>
+        <div class="ph"><img src="img/g-suit.jpg" alt=""></div>
+        <div class="ph"><img src="img/after.jpg" alt=""></div>
+      </div>
+      <div class="render">
+        <div class="row2"><b>Rendering</b><span class="tiny">Editorial walk</span></div>
+        <div class="bar"><i></i></div>
+        <span class="tiny">No studio. No crew. No reshoot.</span>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="levers" aria-label="What I'd build"><span>Brand</span><span>YouTube</span><span>Instagram</span><span>LinkedIn</span><span>Campaigns</span><span>Creators</span><span>Search</span></div>
+</div>
+
+<!-- ================= 01 OPPORTUNITY ================= -->
+<section class="section" id="opportunity">
+  <div class="wrap">
+    <div class="center-head rv">
+      <span class="idx">01 / The opportunity</span>
+      <h2 class="h2">You have the product. Let&rsquo;s build the world around it.</h2>
+      <p class="lede">LastCut is more than an AI video tool. It can become a familiar name among the people who need better ways to produce content, and because its public presence is still early, there&rsquo;s room to shape how people first discover, experience and remember it.</p>
+    </div>
+    <div class="ph wide-photo rv"><img src="img/runway.jpg" alt="A model walking a dark runway under a row of spotlights" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap row">
+    <div class="copy rv">
+      <span class="kicker">Who it&rsquo;s for</span>
+      <h2 class="h2">Building a marketing function from the ground up.</h2>
+      <p class="lede">Defining how LastCut looks and sounds, creating content people actually want to watch, establishing distribution channels, and connecting all of it to product adoption.</p>
+      <div class="result"><span class="kicker">The difference</span><p>Not just posting consistently. Building something that compounds.</p></div>
+    </div>
+    <div class="card aud rv" aria-label="Illustration: LastCut at the centre of four audiences">
+      <div class="aud-hd"><div><span class="tiny">The audience</span><b>One product, four audiences</b></div><span class="sel">Connected</span></div>
+      <div class="venn">
+        <div>Fashion founders<small>Launching drops on a budget</small></div>
+        <div>D2C brands<small>Catalogues that never stop</small></div>
+        <div>E-commerce marketers<small>Content for every channel</small></div>
+        <div>Agencies<small>Many brands, one workflow</small></div>
+        <span class="core">LastCut</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 BRAND ================= -->
+<section class="section" id="brand">
+  <div class="wrap row flip">
+    <div class="copy rv">
+      <p class="platform"><span class="pf br"></span><b>Brand</b><span class="sub">Identity &amp; positioning</span></p>
+      <span class="idx">02 / The brand</span>
+      <h2 class="h2">A brand people recognise before they need it.</h2>
+      <p class="lede">The first job is a distinct identity across every touchpoint: positioning, messaging, visual language, tone of voice and creative direction.</p>
+      <p class="muted">The central story is simple. Fashion brands already have product photos. LastCut turns those photos into videos without the traditional production process. That story should come through in the website, social profiles, product demos, campaigns and every piece of content.</p>
+      <div class="result"><span class="kicker">The idea</span><p>Make the value obvious before someone even visits the website.</p></div>
+    </div>
+    <div class="card brand-card rv" aria-hidden="true">
+      <div class="ph"><img src="img/shirts.jpg" alt="" loading="lazy"></div>
+      <div class="bs">
+        <div><small>The story</small><div class="story"><span>Photo</span><i></i><span class="k">LastCut</span><i></i><span>Video</span></div></div>
+        <div><small>Visual language</small><div class="sw"><i style="background:#121110"></i><i style="background:#FBFAF7"></i><i style="background:#E8E0D3"></i><i style="background:#A8573A"></i></div></div>
+        <div><small>Type</small><p class="type-a">The shoot <em>you didn&rsquo;t</em> need.</p></div>
+        <div><small>Tone of voice</small><div class="voice"><span>Show, don&rsquo;t claim</span><span>Confident</span><span>Fashion-literate</span><span>Clear</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 01 ================= -->
+<div class="wrap" id="channels">
+  <div class="part rv">
+    <span class="kicker">Part 01 &middot; Stories &amp; channels</span>
+    <h2 class="h1">Tell the story. <em>Everywhere.</em></h2>
+    <p class="lede">The people behind LastCut, the product proving itself, and the channels that carry both.</p>
+  </div>
+  <div class="ph part-photo rv"><img src="img/crew.jpg" alt="A photographer and stylist working with a model in a bright studio, a clothing rail beside them" loading="lazy"></div>
+</div>
+
+<!-- 03 YouTube -->
+<section class="section" id="youtube">
+  <div class="wrap row flip">
+    <div class="copy rv">
+      <p class="platform"><span class="pf yt"></span><b>YouTube</b><span class="sub">Startup documentary</span></p>
+      <span class="idx">03 / YouTube</span>
+      <h2 class="h2">Don&rsquo;t just market a startup. Tell its story.</h2>
+      <p class="lede">People follow products, but they also follow the people building them. A series documenting the journey: product decisions, new features, customer conversations, experiments, launch days, and the things that don&rsquo;t go to plan.</p>
+      <p class="muted">The founders can lead if they&rsquo;re comfortable on camera, but the series shouldn&rsquo;t depend on them alone. The wider team&rsquo;s work makes it richer. And every shoot becomes Shorts, Reels, LinkedIn clips and written posts.</p>
+      <div class="result"><span class="kicker">Why it matters</span><p>One story. Multiple touchpoints. A brand people get to know over time.</p></div>
+    </div>
+    <div class="card playlist rv">
+      <div class="ph player"><img src="img/team.jpg" alt="A small team working together on laptops around a wooden table" loading="lazy"><span class="play"></span><span class="scrub"></span></div>
+      <div class="pl-hd"><b>Inside LastCut &middot; Season one</b><span class="tiny">Five series</span></div>
+      <ol class="eps">
+        <li class="on"><span>A Week at LastCut</span><span class="d">Now playing</span></li>
+        <li><span>Building LastCut</span><span class="d">Up next</span></li>
+        <li><span>Customer Diaries</span><span class="d"></span></li>
+        <li><span>Launch Diaries</span><span class="d"></span></li>
+        <li><span>What We Learned</span><span class="d"></span></li>
+      </ol>
+      <div class="formats"><span>YouTube Shorts</span><span>Instagram Reels</span><span>LinkedIn clips</span><span>Written posts</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 Instagram -->
+<section class="section" id="instagram">
+  <div class="wrap row">
+    <div class="copy rv">
+      <p class="platform"><span class="pf ig"></span><b>Instagram</b><span class="sub">Built from zero</span></p>
+      <span class="idx">04 / Instagram</span>
+      <h2 class="h2">A visual identity people recognise.</h2>
+      <p class="lede">Instagram as the place where the product demonstrates its own value. No generic AI quotes. No endless feature announcements. Content that makes people stop, look, and immediately understand what&rsquo;s possible.</p>
+      <p class="muted">I&rsquo;d create the visual system, plan the first batch of posts, manage publishing and community engagement, and use performance data to refine the formats.</p>
+      <div class="result"><span class="kicker">The objective</span><p>A recognisable presence, not simply a filled content calendar.</p></div>
+    </div>
+    <div class="stack rv">
+      <div class="card ig-card" aria-hidden="true">
+        <div class="ig-hd"><span class="ring"><i>L</i></span><div><b>lastcut</b><span class="tiny">Product photos, turned into video</span></div><em>Launching</em></div>
+        <div class="hl">
+          <div class="ph"><img src="img/g-knit.jpg" alt="" loading="lazy"></div>
+          <div class="ph"><img src="img/hood2.jpg" alt="" loading="lazy"></div>
+          <div class="ph"><img src="img/lab-ethnic.jpg" alt="" loading="lazy"></div>
+          <div class="ph"><img src="img/rack.jpg" alt="" loading="lazy"></div>
+          <div class="ph"><img src="img/before.jpg" alt="" loading="lazy"></div>
+        </div>
+        <div class="grid9">
+          <div class="ph reel motion"><img src="img/terra.jpg" alt="" loading="lazy"></div>
+          <div class="ph"><img src="img/g-lehenga.jpg" alt="" loading="lazy"></div>
+          <div class="ph reel"><img src="img/after.jpg" alt="" loading="lazy"></div>
+          <div class="ph"><img src="img/g-dress.jpg" alt="" loading="lazy"></div>
+          <div class="ph reel motion"><img src="img/g-gown.jpg" alt="" loading="lazy"></div>
+          <div class="ph"><img src="img/g-suit.jpg" alt="" loading="lazy"></div>
+        </div>
+      </div>
+      <ul class="fmt">
+        <li><small>01</small><b>Photo to Video</b></li>
+        <li><small>02</small><b>One Product, Five Looks</b></li>
+        <li><small>03</small><b>Trend, Recreated</b></li>
+        <li><small>04</small><b>The 10-Minute Challenge</b></li>
+        <li><small>05</small><b>Template Spotlight</b></li>
+        <li><small>06</small><b>Behind the Build</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 LinkedIn -->
+<section class="section" id="linkedin">
+  <div class="wrap row flip">
+    <div class="copy rv">
+      <p class="platform"><span class="pf li">in</span><b>LinkedIn</b><span class="sub">Team-led distribution</span></p>
+      <span class="idx">05 / LinkedIn</span>
+      <h2 class="h2">Borrow the best ideas. Build a voice of our own.</h2>
+      <p class="lede">The most effective company distribution often comes from people sharing useful perspectives in their own voices, not from company pages alone.</p>
+      <p class="muted">I&rsquo;d study how successful creators use strong hooks, founder-led storytelling, opinion posts and practical carousels, then adapt those approaches to LastCut&rsquo;s audience rather than copy trends blindly. A manageable calendar, ideas and drafts for each person, and posts that sound like them, not a corporate copywriter. Plus creator collaborations and industry conversations to reach beyond our own network.</p>
+      <div class="result"><span class="kicker">The goal</span><p>Turn the team&rsquo;s collective knowledge into a distribution advantage.</p></div>
+    </div>
+    <div class="stack rv" aria-hidden="true">
+      <div class="card cal">
+        <div class="cal-hd">LinkedIn content pillars <span>On track</span></div>
+        <div class="days">
+          <div><small>Founder</small><b>AI &amp; fashion tech opinions</b><span class="av" style="background:#121110">F</span></div>
+          <div><small>Product</small><b>Demos &amp; decisions</b><span class="av" style="background:#A8573A">P</span></div>
+          <div><small>Industry</small><b>D2C &amp; e-com trends</b><span class="av" style="background:#3D5A73">I</span></div>
+          <div><small>Build</small><b>Launches &amp; lessons</b><span class="av" style="background:#6F7F5E">B</span></div>
+          <div><small>Team</small><b>Expertise from the work</b><span class="av" style="background:#8C6A4F">T</span></div>
+        </div>
+      </div>
+      <div class="card draft shift">
+        <div class="who"><span class="av" style="background:#121110">FO</span><div><b>Founder at LastCut</b><span class="tiny">Draft in their own voice</span></div><em>Review</em></div>
+        <p>Every fashion brand already owns its best video footage. It&rsquo;s sitting in the product photo folder.</p>
+        <div class="ln" style="width:92%"></div><div class="ln" style="width:60%"></div>
+      </div>
+      <div class="card draft">
+        <div class="who"><span class="av" style="background:#A8573A">PR</span><div><b>Product at LastCut</b><span class="tiny">Draft in their own voice</span></div><em>Scheduled</em></div>
+        <p>What 40 customer calls taught us about why brands skip product video.</p>
+        <div class="ln" style="width:84%"></div><div class="ln" style="width:52%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 02 ================= -->
+<div class="wrap" id="campaigns">
+  <div class="part rv">
+    <span class="kicker">Part 02 &middot; Campaigns &amp; proof</span>
+    <h2 class="h1">Show it. <em>Don&rsquo;t</em> say it.</h2>
+    <p class="lede">A launch campaign built on the transformation itself, and the customers, creators and experiments that prove it.</p>
+  </div>
+  <div class="ph part-photo rv"><img src="img/studio.jpg" alt="An empty white photo studio with softbox lights, a stool and two potted palms" loading="lazy"></div>
+</div>
+
+<!-- 06 Campaign -->
+<section class="section" id="campaign">
+  <div class="wrap row">
+    <div class="copy rv">
+      <p class="platform"><span class="pf sys"></span><b>Launch campaign</b><span class="sub">Every channel</span></p>
+      <span class="idx">06 / The campaign</span>
+      <h2 class="h2">The Shoot You Didn&rsquo;t Need.</h2>
+      <p class="lede">Not a generic announcement that LastCut is an AI video tool. Take a product photo. Turn it into a video. Show the result. Then repeat it across garments, categories and creative formats until the transformation becomes synonymous with LastCut.</p>
+      <ul class="points">
+        <li>Short before-and-after videos for Instagram and YouTube</li>
+        <li>A complete product demonstration on the website</li>
+        <li>Creator collaborations built around real product challenges</li>
+        <li>LinkedIn posts on the workflow and its use cases</li>
+        <li>A dedicated landing page with a clear route to try it</li>
+        <li>Paid distribution for the strongest-performing creative</li>
+      </ul>
+      <div class="result"><span class="kicker">Why it works</span><p>The creative becomes the explanation. Nobody needs to understand the technology to see why the result matters.</p></div>
+    </div>
+    <div class="card demo rv" aria-hidden="true">
+      <div class="pair">
+        <div class="ph"><img src="img/terra.jpg" alt="" loading="lazy"></div>
+        <span class="arrow"></span>
+        <div class="ph motion"><img src="img/terra.jpg" alt="" loading="lazy"><span class="play"></span><span class="scrub"></span></div>
+      </div>
+      <div class="labels"><span><b>Before</b>One product photo</span><span><b>After</b>A finished product video</span></div>
+      <div class="strip">
+        <div class="ph motion"><img src="img/g-dress.jpg" alt="" loading="lazy"><span class="play sm"></span></div>
+        <div class="ph motion"><img src="img/g-suit.jpg" alt="" loading="lazy"><span class="play sm"></span></div>
+        <div class="ph motion"><img src="img/g-lehenga.jpg" alt="" loading="lazy"><span class="play sm"></span></div>
+        <div class="ph motion"><img src="img/hood2.jpg" alt="" loading="lazy"><span class="play sm"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 Customer stories -->
+<section class="section" id="customers">
+  <div class="wrap">
+    <div class="feature">
+      <div class="ph rv"><img src="img/boutique.jpg" alt="A boutique owner arranging clothes on a rail in a sunlit shop" loading="lazy"></div>
+      <div class="panel rv">
+        <p class="platform"><span class="pf cm"></span><b>Customer stories</b><span class="sub">Proof, not claims</span></p>
+        <span class="idx">07 / Customer stories</span>
+        <h2 class="h2">Let the people using LastCut tell the story.</h2>
+        <p class="muted">Fashion brands and agencies sharing how they use LastCut, what their workflow looked like before, and what has changed. Where outcomes can be measured, I&rsquo;d capture them: production time, content output, workflow improvements.</p>
+        <ol class="steps">
+          <li>Short customer videos</li>
+          <li>Detailed case studies</li>
+          <li>Testimonials and before-and-after demos</li>
+          <li>Measured results, wherever we can get them</li>
+        </ol>
+        <div class="result"><span class="kicker">The standard</span><p>Show who it works for, what problem it solves, and why that matters.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 Creators -->
+<section class="section" id="creators">
+  <div class="wrap row flip">
+    <div class="copy rv">
+      <p class="platform"><span class="pf ig"></span><span class="pf yt"></span><span class="pf li">in</span><b>Partnerships</b><span class="sub">Creators &amp; experts</span></p>
+      <span class="idx">08 / Creator partnerships</span>
+      <h2 class="h2">Get into the conversations customers already trust.</h2>
+      <p class="lede">Fashion creators, D2C founders, Shopify educators, e-commerce marketers and agency owners, collaborating on something useful rather than paying for reach alone.</p>
+      <p class="muted">Test small partnerships first, then invest more in the formats that generate qualified interest and product adoption. Every collaboration also produces content the brand can keep distributing.</p>
+    </div>
+    <div class="card collab rv">
+      <div class="ph"><img src="img/creator.jpg" alt="A smiling creator holding a camera and a gimbal in a white studio" loading="lazy"></div>
+      <ul>
+        <li><span class="av" style="background:#A8573A">C</span><span><b>A real product photo, turned into video</b><small>With a fashion creator</small></span></li>
+        <li><span class="av" style="background:#3D5A73">E</span><span><b>A practical content workflow</b><small>With an e-commerce educator</small></span></li>
+        <li><span class="av" style="background:#6F7F5E">A</span><span><b>Video production across many brands</b><small>With an agency owner</small></span></li>
+        <li><span class="av" style="background:#121110">F</span><span><b>Creating content consistently</b><small>With a fashion founder</small></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 09 Fashion Lab -->
+<section class="section" id="lab">
+  <div class="wrap">
+    <div class="center-head rv">
+      <p class="platform"><span class="pf br"></span><b>Recurring series</b><span class="sub">Product-led content</span></p>
+      <span class="idx">09 / The LastCut Fashion Lab</span>
+      <h2 class="h2">Make the product a reason to keep coming back.</h2>
+      <p class="lede">A recurring series testing LastCut across fashion categories and creative styles. Each edition shows the original product, the template, the final result, and the thinking behind the creative choice.</p>
+    </div>
+    <div class="lab">
+      <article class="rv"><div class="ph motion"><img src="img/lab-ethnic.jpg" alt="Two women in embroidered ethnic gowns, one blue and one maroon" loading="lazy"></div><div class="wk"><b>Ethnic wear</b><span class="tiny">Edition 01</span></div><p>Rich fabrics and embroidery, given movement.</p></article>
+      <article class="rv"><div class="ph motion"><img src="img/hood2.jpg" alt="A model in an oversized grey tracksuit in a blue velvet room" loading="lazy"></div><div class="wk"><b>Streetwear</b><span class="tiny">Edition 02</span></div><p>Fast cuts and attitude for drop culture.</p></article>
+      <article class="rv"><div class="ph motion"><img src="img/black.jpg" alt="A woman in a black slip dress reaching up beside a window rail" loading="lazy"></div><div class="wk"><b>Dresses</b><span class="tiny">Edition 03</span></div><p>Fall, drape and silhouette, in motion.</p></article>
+      <article class="rv"><div class="ph motion"><img src="img/lab-formal.jpg" alt="A tailored checked blazer and a white tuxedo jacket on mannequins" loading="lazy"></div><div class="wk"><b>Formalwear</b><span class="tiny">Edition 04</span></div><p>Precise, tailored, quietly premium.</p></article>
+    </div>
+    <div class="clinic rv">
+      <span class="kicker">Plus</span>
+      <p>The Product Video Clinic</p>
+      <small>Brands submit product images for selected demonstrations. The audience participates, and we learn which use cases spark the most interest.</small>
+    </div>
+  </div>
+</section>
+
+<!-- 10 Agencies -->
+<section class="section" id="agencies">
+  <div class="wrap">
+    <div class="feature flip">
+      <div class="ph rv"><img src="img/coat.jpg" alt="A single garment hanging against a concrete wall beside a camera on a tripod" loading="lazy"></div>
+      <div class="panel rv">
+        <p class="platform"><span class="pf sys"></span><b>Agencies</b><span class="sub">A separate story</span></p>
+        <span class="idx">10 / A different approach for agencies</span>
+        <h2 class="h2">One product. Multiple brands.</h2>
+        <p class="muted">Agencies produce content for several fashion businesses at once. A small brand and an agency have different needs, even with the same product, and that distinction should show up in the content, campaigns and conversion paths.</p>
+        <ul class="points">
+          <li>How LastCut fits multi-client workflows</li>
+          <li>Adapting templates across product catalogues</li>
+          <li>Agency landing pages and workflow demos</li>
+          <li>Targeted outreach and co-marketing with e-commerce agencies</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 03 ================= -->
+<div class="wrap" id="growth">
+  <div class="part rv">
+    <span class="kicker">Part 03 &middot; The growth system</span>
+    <h2 class="h1">Make every idea <em>work harder.</em></h2>
+    <p class="lede">Search, repurposing and measurement, so attention turns into adoption.</p>
+  </div>
+  <div class="ph part-photo rv"><img src="img/atelier.jpg" alt="Dress forms in a bright atelier, seen through a dark doorway" loading="lazy"></div>
+</div>
+
+<!-- 11 Search -->
+<section class="section" id="search">
+  <div class="wrap row">
+    <div class="copy rv">
+      <p class="platform"><span class="pf web"></span><span class="pf yt"></span><b>Search &amp; education</b><span class="sub">Intent-led</span></p>
+      <span class="idx">11 / Search and education</span>
+      <h2 class="h2">Answer the questions people already ask.</h2>
+      <p class="lede">Not everyone discovers LastCut through a Reel. Some are actively searching for a way to solve a problem.</p>
+      <p class="muted">YouTube tutorials, search-led website content and practical guides that work together. Each piece answers a real question and offers a natural next step: try LastCut.</p>
+    </div>
+    <div class="card serp rv" aria-hidden="true">
+      <div class="q-bar">how to turn clothing photos into videos<span class="cur"></span></div>
+      <ul class="sugg">
+        <li><span><b>How to turn clothing photos into videos</b><small>Step-by-step tutorial</small></span><span class="st vid">Video</span></li>
+        <li><span><b>Fashion product Reels without a traditional shoot</b><small>Landing page</small></span><span class="st web">Page</span></li>
+        <li><span><b>Generating videos for a large product catalogue</b><small>Practical guide</small></span><span class="st guide">Guide</span></li>
+        <li><span><b>How fashion brands can use AI video tools</b><small>Explainer</small></span><span class="st vid">Video</span></li>
+        <li><span><b>Streamlining fashion content for agencies</b><small>Workflow guide</small></span><span class="st guide">Guide</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 12 One idea, many channels -->
+<section class="section" id="engine">
+  <div class="wrap row flip">
+    <div class="copy rv">
+      <p class="platform"><span class="pf sys"></span><b>Content engine</b><span class="sub">Repurposing</span></p>
+      <span class="idx">12 / One idea. Many channels.</span>
+      <h2 class="h2">A content engine, not a content treadmill.</h2>
+      <p class="lede">LastCut shouldn&rsquo;t need a brand-new idea for every platform, every day. Every substantial piece of content gets a longer life.</p>
+      <p class="muted">A customer interview becomes a case study, testimonial clips and sales material. A product launch becomes a coordinated campaign. I&rsquo;d manage the editorial calendar, briefs, scripts, production coordination, repurposing, publishing and performance reviews.</p>
+    </div>
+    <div class="card flow rv" aria-label="Illustration: one episode repurposed into six formats">
+      <div class="flow-src"><div class="ph"><img src="img/team.jpg" alt="" loading="lazy"></div><div><b>A Week at LastCut, episode one</b><small>One YouTube episode</small></div></div>
+      <ul class="branches">
+        <li><span class="pf yt"></span>Three YouTube Shorts</li>
+        <li><span class="pf ig"></span>Instagram Reels from the best moments</li>
+        <li><span class="pf li">in</span>A founder post on the decision behind it</li>
+        <li><span class="pf li">in</span>A LinkedIn carousel of the lessons</li>
+        <li><span class="pf nl"></span>A newsletter feature</li>
+        <li><span class="pf cm"></span>Sales material for customer calls</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 13 Measure -->
+<section class="section" id="measure">
+  <div class="wrap row">
+    <div class="copy rv">
+      <p class="platform"><span class="pf sys"></span><b>Measurement</b><span class="sub">From attention to adoption</span></p>
+      <span class="idx">13 / Measure what matters</span>
+      <h2 class="h2">Attention is a start. Adoption is the objective.</h2>
+      <p class="lede">Brand-building connected to business outcomes, not judged by follower counts alone. Establish a baseline, review regularly, then decide what to improve, stop or scale.</p>
+      <p class="muted">My experience across performance marketing, creative strategy, lead generation and conversion optimisation helps connect these activities rather than treat them as separate functions.</p>
+    </div>
+    <div class="card meas rv" aria-hidden="true">
+      <div class="meas-hd"><b>The scorecard</b><span>Reviewed weekly</span></div>
+      <ol class="funnel">
+        <li><small>Brand</small><span class="fb"><b>Relevant reach, branded search, direct traffic</b><span class="track"><i style="width:100%"></i></span></span></li>
+        <li><small>Content</small><span class="fb"><b>Watch time, retention, saves, shares</b><span class="track"><i style="width:82%"></i></span></span></li>
+        <li><small>Distribution</small><span class="fb"><b>Creator traffic, referral sign-ups</b><span class="track"><i style="width:64%"></i></span></span></li>
+        <li><small>Acquisition</small><span class="fb"><b>Qualified visits, sign-ups, CPA</b><span class="track"><i style="width:46%"></i></span></span></li>
+        <li class="goal"><small>Product</small><span class="fb"><b>First videos, repeat usage, paid conversions</b><span class="track"><i style="width:30%"></i></span></span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 14 PLAN ================= -->
+<section class="section" id="plan">
+  <div class="wrap">
+    <div class="center-head rv">
+      <span class="idx">14 / The first month</span>
+      <h2 class="h2">Build. Publish. Learn. Improve.</h2>
+      <p class="lede">An initial working plan, not a promise of a particular growth number in 30 days.</p>
+    </div>
+    <ol class="weeks">
+      <li class="card rv"><span class="n">WEEK 1</span><span class="track"><i style="width:25%"></i></span><h3 class="h3">Establish the foundation</h3><p>Understand the product, audiences, customer journey and priorities. Define messaging, channel strategy, creative direction and the first content plan.</p></li>
+      <li class="card rv"><span class="n">WEEK 2</span><span class="track"><i style="width:50%"></i></span><h3 class="h3">Create and launch</h3><p>Build the Instagram presence, publish the first product demos, set up the LinkedIn system, and start producing YouTube content.</p></li>
+      <li class="card rv"><span class="n">WEEK 3</span><span class="track"><i style="width:75%"></i></span><h3 class="h3">Expand distribution</h3><p>Repurpose across channels, test creative hooks, begin outreach to creators and potential customers, and develop the first campaign assets.</p></li>
+      <li class="card rv"><span class="n">WEEK 4</span><span class="track"><i style="width:100%"></i></span><h3 class="h3">Review and iterate</h3><p>Evaluate what was published, review performance and feedback, find the strongest opportunities, and present a plan for the next stage.</p></li>
+    </ol>
+    <div class="next rv"><span class="kicker">The outcome</span><span><b>Real work completed</b>, a functioning content system, and evidence to guide the next decisions.</span></div>
+  </div>
+</section>
+
+<!-- ================= 15 OFFER ================= -->
+<section class="section" id="offer">
+  <div class="wrap offer">
+    <div class="ph rv"><img src="img/rack.jpg" alt="A rail of neutral linen garments in a bright boutique with a tall cactus" loading="lazy"></div>
+    <div class="copy rv">
+      <span class="idx">15 / The offer</span>
+      <h2 class="h2">Don&rsquo;t take my word for it. Let me show you.</h2>
+      <p class="lede">I&rsquo;d like to join LastCut as a marketing intern for one month, unpaid. Give me the room to build, experiment and execute, and at the end of the month, let the work speak for itself.</p>
+      <p class="muted">Over five years across growth and performance marketing, creative strategy, content, lead generation, and building marketing initiatives from the ground up. What draws me to LastCut is bringing those together in an early-stage company with room to experiment and take ownership.</p>
+      <div class="skills"><span>Growth &amp; performance</span><span>Creative strategy</span><span>Content</span><span>Lead generation</span><span>Conversion optimisation</span></div>
+      <ul class="deliver">
+        <li><small>You&rsquo;ll see</small>The ideas I&rsquo;ve executed</li>
+        <li><small>You&rsquo;ll keep</small>The systems I&rsquo;ve built</li>
+        <li><small>You&rsquo;ll measure</small>The response we&rsquo;ve observed</li>
+        <li><small>You&rsquo;ll decide</small>The opportunities ahead</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="quote rv">No grand promises. No asking you to believe in a presentation. <span>If the work shows I can contribute, we talk about what comes next.</span></p>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" role="region" aria-label="Closing">
+  <span class="chip rv"><span class="s">ONE MONTH</span>Unpaid. Fully committed.</span>
+  <h2 class="h1 rv">Give me one month. <em>Let the work speak.</em></h2>
+  <div class="sign rv">
+    <span class="av">S</span>
+    <div><b>Sramana Giri</b><small>Growth &amp; Performance Marketing &middot; Brand &middot; Content &amp; Distribution</small></div>
+    <a class="btn" href="https://sramanagiri99-creates.github.io/portfolio/" target="_blank" rel="noopener">Explore my portfolio</a>
+  </div>
+</section>
+
+<footer>
+  <span>A proposal for LastCut by Sramana Giri &middot; Photos from <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></span>
+  <a href="#top">Back to top &uarr;</a>
+</footer>
+
+</div>
+
+<script>
+// Highlight the menu item for the section in view.
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.menu a'));
+  var map = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function onScroll() {
+    var y = window.scrollY + window.innerHeight * 0.35, k = 0;
+    map.forEach(function (el, i) { if (el && el.getBoundingClientRect().top + window.scrollY <= y) k = i; });
+    links.forEach(function (a, i) { a.classList.toggle('on', i === k); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>
